@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Temperature Hot</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(images/bg-image.jpg) no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="col-md-6 m-auto py-5">
+            <div class="input-group mb-3">
+                <input id="input-field" type="text" class="form-control" placeholder="Enter a location for Weather ...">
+                <div class="input-group-append">
+                    <button id="search-btn" type="button" class="btn btn-danger">Search</button>
+                </div>
+            </div>
+        </form>
+        <div class="weather-status text-white text-center">
+            <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <h1 id="country-name">Dhaka</h1>
+            <h3 id="temp"><span>38.06</span>&deg;C</h3>
+            <h1 id="weather-el" class="lead">Clouds</h1>
+        </div>
+    </div>
+
+    <script>
+       
+
+ const searchBtn = document.getElementById("search-btn")
+ searchBtn.addEventListener('click' , function(){
+       const inputField = document.getElementById('input-field').value;
+
+       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputField}&units=metric&appid=246bd8f0b8522b697b733b5fc5503ce5`)
+       .then(res => res.json())
+       .then( data => {
+
+        let countryName = document.getElementById("country-name");
+            // countryName.innerText = `${weather.name}, ${weather.sys.country}`;
+            countryName.innerText = data.name;
+
+            let temp = document.getElementById("temp");
+            // temp.innerHTML = `${Math.round(weather.main.temp)}<span>°c</span>`;
+            temp.innerText = data.main.temp;
+
+            let weather_el = document.getElementById("weather-el");
+            // weather_el.innerHTML = weather.weather[0].main;
+            weather_el.innerText = data.weather[0].main;
+         }
+
+       )
+ });
+
+//    
+
+    
+    </script>
+
+</body>
+
+</html>
