@@ -36,12 +36,12 @@
         </div>
     </div>
 
-    <script>
+<script>
        
 
- const searchBtn = document.getElementById("search-btn")
- searchBtn.addEventListener('click' , function(){
-       const inputField = document.getElementById('input-field').value;
+    const searchBtn = document.getElementById("search-btn")
+    searchBtn.addEventListener('click' , function(){
+        const inputField = document.getElementById('input-field').value;
 
        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputField}&units=metric&appid=246bd8f0b8522b697b733b5fc5503ce5`)
        .then(res => res.json())
@@ -63,10 +63,7 @@
        )
  });
 
-//    
-
-    
-    </script>
+</script>
 
 </body>
 
